@@ -41,9 +41,14 @@ const longestLived = inventors.sort((x,y)=> (x.passed - y.year > y.passed -x.yea
 console.log(longestLived)
 // Array.prototype.reduce()
 // 5. How many years did all the inventors live?
+let totalYears = 0
+let sum =inventors.reduce(function(accumlation, currentValue){
+    return accumlation +( currentValue.passed -currentValue.year)
+} ,totalYears)
 
+console.log(sum)
 
-
+//sum equals inventors ages (passed-year)
 const people = [
   'Becker, Carl', 'Beckett, Samuel', 'Beddoes, Mick', 'Beecher, Henry',
   'Beethoven, Ludwig', 'Begin, Menachem', 'Belloc, Hilaire', 'Bellow, Saul',
@@ -62,6 +67,25 @@ const people = [
 // 6. Map the people array such that the new array consists of strings with the names formatted as "First Last", e.g., "Becker, Carl" should be mapped to "Carl Becker".
 
 
+   function newPeople(peoples){
+       var list =[]
+   
+
+    for (i =0; i <peoples.length; i++){
+       let a =peoples[i].split (',')[0]
+        let b = peoples [i].split (',')[1]   
+        let firstLast = b + " " + a
+        list.push(firstLast)
+
+    }
+ return list.sort()
+}
+
+console.log(newPeople(people))
+
+let firstLastName =people.map(pep =>pep.split(',').reverse().join(" ")) //function people will remove the "," (split), reverse the names (reverse) and join them back together (join)
+
+console.log(firstLastName)
 
 const data = [
   'car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van',
@@ -72,7 +96,25 @@ const data = [
 // 7. Count the number of instances for each of the data items.
 // Hint:  Return an object where the keys are 'car', 'truck', etc. and the values are the count.
 
+let vehicles= data.reduce((acc, vehicle)=>{
+    acc[vehicle]=acc[vehicle] ? acc[vehicle] + 1 : 1;
+    return acc
+}, {}) //<= inital value of acc
+//acc= {}; key
+//vehicle ="car" ; value
 
+//let vehicles = date.reduce((acc, vehicle){
+    //if (acc[vehicle]){
+        //acc[vehicle]= acc[vehicle] +1
+//}else{
+    // acc[vehicle] =1
+//}
+//return acc;
+//})
+
+//acc [vehicle] = in the empty object does a value for key "car" exist?
+//if it does then put a value in that key of the existing value 'car' + 1
+//if it does not then assign a value of 1 to acc [vehicle]
 
 const devs = [
   { name: 'Wes', year: 1988 },
@@ -84,11 +126,17 @@ const devs = [
 // Array.prototype.some()
 // 8. Check if at least one person is 19 or older?
 
+let devAges = 0
+devAges = devs.some(dev => 2020- dev.year)
+console.log(devAges)
 
 
 // Array.prototype.every()
 // 9. Check if everyone is 19 or older?
+let devAge = 0
 
+devAge= devs.every(dev=> 19 >= dev.year)
+console.log(devAges)
 
 
 const comments = [
@@ -101,8 +149,14 @@ const comments = [
 
 // Array.prototype.find()
 // 10. Find the comment with the id of 823423
-
+let commentID = 0
+commentID = comments.find(({id})=>id=== 823423)
+console.log(commentID)
 
 
 // Array.prototype.findIndex()
 // 11. Find the index of the comment with an id of 123523
+
+commentIdLocator = comments.findIndex(({id})=>id ==="123523")
+
+console.log(commentIdLocator)
